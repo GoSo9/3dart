@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Professional 3D Motion Portfolio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f9f9f9;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* Floating header */
+    .header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      z-index: 10;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      transition: all 0.3s ease;
+    }
+    .header.shrink {
+      padding: 8px 0;
+      font-size: 14px;
+    }
+    .header div { margin: 5px 0; font-size: 16px; }
+
+    /* Tabs */
+    .tabs {
+      margin-top: 120px; /* push below header */
+      text-align: center;
+    }
+    .tab-button {
+      background: #444;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 0 5px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+    .tab-button:hover {
+      background: #555;
+    }
+    .tab-button.active {
+      background: #007BFF;
+    }
+    .tab-content {
+      display: none;
+      margin-top: 20px;
+    }
+    .tab-content.active {
+      display: block;
+    }
+
+    .gallery {
+      display: flex; flex-direction: column; align-items: center;
+      z-index: 2; position: relative;
+    }
+    .gallery img, .gallery video {
+      width: 90%; max-width: 400px; margin: 10px 0; cursor: pointer;
+      border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    /* Animated background */
+    .background {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 0; overflow: hidden;
+    }
+    svg { width: 100%; height: 100%; }
+    path {
+      fill: none; stroke-width: 2;
+      stroke-linecap: round; stroke-linejoin: round;
+      animation: wave 6s infinite alternate ease-in-out;
+    }
+    path:nth-child(1) { stroke: rgba(0,150,255,0.3); animation-duration: 8s; }
+    path:nth-child(2) { stroke: rgba(255,100,150,0.3); animation-duration: 10s; }
+    path:nth-child(3) { stroke: rgba(100,255,180,0.3); animation-duration: 12s; }
+    @keyframes wave {
+      0% { d: path("M0,300 Q150,200 300,300 T600,300 T900,300"); }
+      100% { d: path("M0,300 Q150,400 300,300 T600,300 T900,300"); }
+    }
+
+    /* Overlay fullscreen */
+    .overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center;
+      z-index: 20;
+    }
+    .overlay img, .overlay video { max-width: 95%; max-height: 95%; }
+    .close { cursor: pointer; color:white;font-size:30px;position:absolute;top:20px;right:30px; }
+  </style>
+</head>
+<body>
+  <!-- Floating Header -->
+  <div class="header" id="header">
+    <div>Portfolios for 3D arts - Photos and Videos</div>
+    <div>Contact: +91-7977561381 (WhatsApp)</div>
+    <div>Email: gourav.ecb@gmail.com</div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-button" onclick="openTab('photos', event)">Photos</button>
+    <button class="tab-button active" onclick="openTab('videos', event)">Videos</button>
+  </div>
+
+  <!-- Photos Tab -->
+  <div id="photos" class="tab-content">
+    <div class="gallery">
+      	<img src="images/AB9-Logo-v3-1.png" alt="AB9-Logo-v3-1">
+	<img src="images/AR-Logo.png" alt="AR-Logo">
+	<img src="images/Rajhans_Color_1.png" alt="Rajhans_Color_1">
+	<img src="images/Realize.png" alt="Realize">
+	<img src="images/BedRoom.png" alt="BedRoom">
+	<img src="images/Name-GS.png" alt="Name-GS">
+	<img src="images/Plane_v1.png" alt="Plane_v1">
+	<img src="images/Plane_v2.png" alt="Plane_v2">
+	<img src="images/Plane_v3.png" alt="Plane_v3">
+	<img src="images/Abstract_v1.png" alt="Abstract_v1">
+	<img src="images/Sofa.png" alt="Sofa">
+	<img src="images/Chair.png" alt="Chair">
+	<img src="images/sword.png" alt="sword">
+    </div>
+  </div>
+
+  <!-- Videos Tab -->
+  <div id="videos" class="tab-content active">
+    <div class="gallery">
+      <video src="videos/AB9-Replay-Demo.mp4" controls autoplay muted loop playsinline preload="metadata"></video>
+      <video src="videos/BaloonFours-Demo0001-0125.mp4" controls autoplay muted loop playsinline preload="metadata"></video>
+      <video src="videos/Beawer Sports - Demos.mp4" controls autoplay muted loop playsinline preload="metadata"></video>
+      <video src="videos/Beawer Sports - Demos_v2.mp4" controls autoplay muted loop playsinline preload="metadata"></video>
+      <video src="videos/Logo-V3-ReverseColor.mp4" controls autoplay muted loop playsinline preload="metadata"></video>
+      <video src="videos/Miraj-Demo.mp4" controls autoplay muted loop playsinline preload="metadata"></video>
+      <video src="videos/Replay0001-0120.mp4" controls autoplay muted loop playsinline preload="metadata"></video>
+      <video src="videos/Replay-demo.mp4" controls autoplay muted loop playsinline preload="metadata"></video>
+      <video src="videos/TopLeft-Logo0001-0150.mp4" controls autoplay muted loop playsinline preload="metadata"></video>
+      <video src="videos/Wicket-Demo.mp4" controls autoplay muted loop playsinline preload="metadata"></video>
+      <video src="videos/IPL_1.mp4" controls autoplay muted loop playsinline preload="metadata"></video>
+      <video src="videos/Mumbai Cricket Association.mp4" controls autoplay muted loop playsinline preload="metadata"></video>
+      <video src="videos/cards0001-0500-1.mp4" controls autoplay muted loop playsinline preload="metadata"></video>
+      <video src="videos/Gold Ring.mp4" controls autoplay muted loop playsinline preload="metadata"></video>
+      <video src="videos/Phone Cover.mp4" controls autoplay muted loop playsinline preload="metadata"></video>
+      <video src="videos/Plane0001-0250-100.mp4" controls autoplay muted loop playsinline preload="metadata"></video>
+      <video src="videos/Kaizen.mp4" controls autoplay muted loop playsinline preload="metadata"></video>
+      <video src="videos/Krunal.mp4" controls autoplay muted loop playsinline preload="metadata"></video>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay">
+    <span class="close" onclick="closeOverlay()">✖</span>
+    <div id="overlayContent"></div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Tab Switching
+    function openTab(tabId, event) {
+      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    // Overlay logic
+    const overlay = document.getElementById('overlay');
+    const overlayContent = document.getElementById('overlayContent');
+
+    document.querySelectorAll('.gallery img, .gallery video').forEach(item => {
+      item.addEventListener('click', () => {
+        overlay.style.display = 'flex';
+        overlayContent.innerHTML = '';
+        if (item.tagName === 'IMG') {
+          const img = document.createElement('img');
+          img.src = item.src;
+          overlayContent.appendChild(img);
+        } else {
+          const vid = document.createElement('video');
+          vid.src = item.src;
+          vid.controls = true;
+          vid.autoplay = true;
+          overlayContent.appendChild(vid);
+        }
+      });
+    });
+
+    function closeOverlay() {
+      overlay.style.display = 'none';
+      overlayContent.innerHTML = '';
+    }
+
+    // Auto-play videos when in view
+    document.addEventListener("DOMContentLoaded", function() {
+      const videos = document.querySelectorAll("video");
+
+      function checkVideos() {
+        videos.forEach(video => {
+          const rect = video.getBoundingClientRect();
+          const halfScreen = window.innerHeight / 2;
+
+          if (rect.top < halfScreen && rect.bottom > halfScreen) {
+            if (video.paused) {
+              video.play();
+            }
+          } else {
+            if (!video.paused) {
+              video.pause();
+            }
+          }
+        });
+      }
+
+      window.addEventListener("scroll", checkVideos);
+      window.addEventListener("resize", checkVideos);
+      checkVideos();
+    });
+
+    // Shrink header on scroll
+    window.addEventListener("scroll", function() {
+      const header = document.getElementById("header");
+      if (window.scrollY > 50) {
+        header.classList.add("shrink");
+      } else {
+        header.classList.remove("shrink");
+      }
+    });
+  </script>
+</body>
+</html>
