@@ -98,9 +98,28 @@
     .close { cursor: pointer; color:white;font-size:30px;position:absolute;top:20px;right:30px; }
   </style>
 </head>
+
 <body>
-  <!-- Floating Header -->
-  <div class="header" id="header">
+<div class="bg">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+</div>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#0b1020;color:#fff;overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden}
+.blob{position:absolute;width:45vw;height:45vw;border-radius:50%;filter:blur(80px);animation:float 18s infinite alternate ease-in-out,hue 12s infinite linear}
+.b1{top:-10%;left:-10%;background:#00d4ff}
+.b2{right:-10%;top:20%;background:#7b61ff}
+.b3{left:25%;bottom:-15%;background:#00ffb3}
+@keyframes float{to{transform:translate(120px,-80px) scale(1.2)}}
+@keyframes hue{from{filter:blur(80px) hue-rotate(0deg)}to{filter:blur(80px) hue-rotate(360deg)}}
+.header{position:sticky;top:0;background:rgba(15,20,35,.75);backdrop-filter:blur(12px);padding:16px;text-align:center;z-index:10}
+.tabs{text-align:center;margin:20px}
+.tab-button{padding:12px 24px;border:none;border-radius:999px;margin:0 6px}
+.gallery{display:flex;flex-direction:column;align-items:center;gap:24px;padding:20px}
+.gallery video{width:min(94vw,1400px);border-radius:18px;box-shadow:0 10px 40px rgba(0,0,0,.4)}
+.gallery img{width:min(94vw,900px);border-radius:18px}
+</style>
+<div class="header" id="header">
     <div>Portfolios for 3D arts - Photos and Videos</div>
     <div>Contact: +91-7977561381 (WhatsApp)</div>
     <div>Email: gourav.ecb@gmail.com</div>
@@ -234,5 +253,13 @@
       }
     });
   </script>
-</body>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+ if(e.target.tagName==='VIDEO'){
+   if(e.isIntersecting){e.target.play().catch(()=>{});} else {e.target.pause();}
+ }
+}),{threshold:.55});
+document.querySelectorAll('video').forEach(v=>{v.autoplay=false;v.loop=true;io.observe(v);});
+</script></body>
 </html>
