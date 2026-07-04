@@ -1,262 +1,674 @@
-<!DOCTYPE html>
+<!doctype html>
 
 <html lang="en">
-<head>
-<meta charset="utf-8"/>
-<title>3D Motion Portfolio</title>
-<style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0; padding: 0;
-      background: #f9f9f9;
-      color: #333;
-      overflow-x: hidden;
-    }
+  <head>
+    <meta charset="utf-8" />
+    <title>3D Motion Portfolio</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f9f9f9;
+        color: #333;
+        overflow-x: hidden;
+      }
 
-    /* Floating header */
-    .header {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      background: #222;
-      color: white;
-      text-align: center;
-      padding: 20px 0;
-      z-index: 10;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-      transition: all 0.3s ease;
-    }
-    .header.shrink {
-      padding: 8px 0;
-      font-size: 14px;
-    }
-    .header div { margin: 5px 0; font-size: 16px; }
+      /* Floating header */
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: #222;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+        z-index: 10;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+        transition: all 0.3s ease;
+      }
+      .header.shrink {
+        padding: 8px 0;
+        font-size: 14px;
+      }
+      .header div {
+        margin: 5px 0;
+        font-size: 16px;
+      }
 
-    /* Tabs */
-    .tabs {
-      margin-top: 120px; /* push below header */
-      text-align: center;
-    }
-    .tab-button {
-      background: #444;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      margin: 0 5px;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background 0.3s;
-    }
-    .tab-button:hover {
-      background: #555;
-    }
-    .tab-button.active {
-      background: #007BFF;
-    }
-    .tab-content {
-      display: none;
-      margin-top: 20px;
-    }
-    .tab-content.active {
-      display: block;
-    }
+      /* Tabs */
+      .tabs {
+        margin-top: 120px; /* push below header */
+        text-align: center;
+      }
+      .tab-button {
+        background: #444;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin: 0 5px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background 0.3s;
+      }
+      .tab-button:hover {
+        background: #555;
+      }
+      .tab-button.active {
+        background: #007bff;
+      }
+      .tab-content {
+        display: none;
+        margin-top: 20px;
+      }
+      .tab-content.active {
+        display: block;
+      }
 
-    .gallery {
-      display: flex; flex-direction: column; align-items: center;
-      z-index: 2; position: relative;
-    }
-    .gallery img, .gallery video {
-      width: 90%; max-width: 400px; margin: 10px 0; cursor: pointer;
-      border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    }
+      .gallery {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 2;
+        position: relative;
+      }
+      .gallery img,
+      .gallery video {
+        width: 90%;
+        max-width: 400px;
+        margin: 10px 0;
+        cursor: pointer;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
 
-    /* Animated background */
-    .background {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      z-index: 0; overflow: hidden;
-    }
-    svg { width: 100%; height: 100%; }
-    path {
-      fill: none; stroke-width: 2;
-      stroke-linecap: round; stroke-linejoin: round;
-      animation: wave 6s infinite alternate ease-in-out;
-    }
-    path:nth-child(1) { stroke: rgba(0,150,255,0.3); animation-duration: 8s; }
-    path:nth-child(2) { stroke: rgba(255,100,150,0.3); animation-duration: 10s; }
-    path:nth-child(3) { stroke: rgba(100,255,180,0.3); animation-duration: 12s; }
-    @keyframes wave {
-      0% { d: path("M0,300 Q150,200 300,300 T600,300 T900,300"); }
-      100% { d: path("M0,300 Q150,400 300,300 T600,300 T900,300"); }
-    }
+      /* Animated background */
+      .background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        overflow: hidden;
+      }
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+      path {
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        animation: wave 6s infinite alternate ease-in-out;
+      }
+      path:nth-child(1) {
+        stroke: rgba(0, 150, 255, 0.3);
+        animation-duration: 8s;
+      }
+      path:nth-child(2) {
+        stroke: rgba(255, 100, 150, 0.3);
+        animation-duration: 10s;
+      }
+      path:nth-child(3) {
+        stroke: rgba(100, 255, 180, 0.3);
+        animation-duration: 12s;
+      }
+      @keyframes wave {
+        0% {
+          d: path("M0,300 Q150,200 300,300 T600,300 T900,300");
+        }
+        100% {
+          d: path("M0,300 Q150,400 300,300 T600,300 T900,300");
+        }
+      }
 
-    /* Overlay fullscreen */
-    .overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center;
-      z-index: 20;
-    }
-    .overlay img, .overlay video { max-width: 95%; max-height: 95%; }
-    .close { cursor: pointer; color:white;font-size:30px;position:absolute;top:20px;right:30px; }
-  
-.gallery{display:flex;flex-direction:column;align-items:center;gap:24px;padding:20px}
-.media-card{width:min(1400px,90vw);background:rgba(255,255,255,.06);backdrop-filter:blur(8px);
-border-radius:18px;padding:14px;box-sizing:border-box}
-.media-card img,.media-card video{width:100%!important;max-width:none!important;display:block;border-radius:12px}
-.media-description{text-align:center;padding:12px 4px;font-size:1rem}
-@media(max-width:768px){.media-card{width:92vw}}
-</style>
+      /* Overlay fullscreen */
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 20;
+      }
+      .overlay img,
+      .overlay video {
+        max-width: 95%;
+        max-height: 95%;
+      }
+      .close {
+        cursor: pointer;
+        color: white;
+        font-size: 30px;
+        position: absolute;
+        top: 20px;
+        right: 30px;
+      }
 
-<style>
-/* Push tabs below larger header */
-.tabs{
-    margin-top: 180px !important;
-    padding-top: 15px;
-    position: relative;
-    z-index: 5;
-}
-@media (max-width: 768px){
-    .tabs{
-        margin-top: 220px !important;
-        padding-top: 20px;
-    }
-}
-.tab-button{
-    font-size: 16px;
-    padding: 12px 24px;
-}
-</style>
-</head>
-<body>
-<style>
-/* Animated abstract curves */
-.curves-bg{position:fixed;inset:0;overflow:hidden;z-index:-2;pointer-events:none}
-.curve{position:absolute;width:160vw;height:160px;border-radius:50%;
-border:3px solid rgba(255,255,255,.12);filter:blur(1px);
-animation:moveCurve 18s ease-in-out infinite,colorShift 12s linear infinite}
-.c1{top:10%;left:-30%;transform:rotate(-12deg)}
-.c2{top:40%;left:-20%;animation-duration:22s}
-.c3{top:70%;left:-25%;animation-duration:26s}
-@keyframes moveCurve{
-0%,100%{transform:translateX(0) rotate(-12deg)}
-50%{transform:translateX(120px) rotate(8deg)}
-}
-@keyframes colorShift{
-0%{border-color:rgba(0,212,255,.25)}
-33%{border-color:rgba(123,97,255,.25)}
-66%{border-color:rgba(0,255,179,.25)}
-100%{border-color:rgba(0,212,255,.25)}
-}
-.header{
-font-size:clamp(18px,4vw,30px)!important;
-line-height:1.5;
-padding:20px 12px!important;
-}
-.header div{
-font-size:inherit!important;
-}
-</style>
-<div class="curves-bg">
-<div class="curve c1"></div>
-<div class="curve c2"></div>
-<div class="curve c3"></div>
-</div>
+      .gallery {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        padding: 20px;
+      }
+      .media-card {
+        width: min(1400px, 90vw);
+        background: rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(8px);
+        border-radius: 18px;
+        padding: 14px;
+        box-sizing: border-box;
+      }
+      .media-card img,
+      .media-card video {
+        width: 100% !important;
+        max-width: none !important;
+        display: block;
+        border-radius: 12px;
+      }
+      .media-description {
+        text-align: center;
+        padding: 12px 4px;
+        font-size: 1rem;
+      }
+      @media (max-width: 768px) {
+        .media-card {
+          width: 92vw;
+        }
+      }
+    </style>
 
-<!-- Floating Header -->
-<div class="header" id="header">
-<div>3D Graphics and Design Studio</div>
-<div>Contact: +91-7977561381 (WhatsApp)</div>
-<div>Email: gourav.ecb@gmail.com</div>
-</div>
-<!-- Tabs -->
-<div class="tabs">
-<button class="tab-button" onclick="openTab('photos', event)">Photos</button>
-<button class="tab-button active" onclick="openTab('videos', event)">Videos</button>
-</div>
-<!-- Photos Tab -->
-<div class="tab-content" id="photos">
-<div class="gallery"><div class="media-card"><img alt="AB9-Logo-v3-1" src="images/AB9-Logo-v3-1.png"/><div class="media-description">AB9-Logo-v3-1</div></div><div class="media-card"><img alt="AR-Logo" src="images/AR-Logo.png"/><div class="media-description">AR-Logo</div></div><div class="media-card"><img alt="Rajhans_Color_1" src="images/Rajhans_Color_1.png"/><div class="media-description">Rajhans_Color_1</div></div><div class="media-card"><img alt="Realize" src="images/Realize.png"/><div class="media-description">Realize</div></div><div class="media-card"><img alt="BedRoom" src="images/BedRoom.png"/><div class="media-description">BedRoom</div></div><div class="media-card"><img alt="Name-GS" src="images/Name-GS.png"/><div class="media-description">Name-GS</div></div><div class="media-card"><img alt="Plane_v1" src="images/Plane_v1.png"/><div class="media-description">Plane_v1</div></div><div class="media-card"><img alt="Plane_v2" src="images/Plane_v2.png"/><div class="media-description">Plane_v2</div></div><div class="media-card"><img alt="Plane_v3" src="images/Plane_v3.png"/><div class="media-description">Plane_v3</div></div><div class="media-card"><img alt="Abstract_v1" src="images/Abstract_v1.png"/><div class="media-description">Abstract_v1</div></div><div class="media-card"><img alt="Sofa" src="images/Sofa.png"/><div class="media-description">Sofa</div></div><div class="media-card"><img alt="Chair" src="images/Chair.png"/><div class="media-description">Chair</div></div><div class="media-card"><img alt="sword" src="images/sword.png"/><div class="media-description">sword</div></div></div>
-</div>
-<!-- Videos Tab -->
-<div class="tab-content active" id="videos">
-<div class="gallery"><div class="media-card"><video autoplay="" controls="" loop="" muted="" playsinline="" preload="metadata" src="videos/AB9-Replay-Demo.mp4"></video><div class="media-description">AB9 Replay Demo</div></div><div class="media-card"><video autoplay="" controls="" loop="" muted="" playsinline="" preload="metadata" src="videos/BaloonFours-Demo0001-0125.mp4"></video><div class="media-description">BaloonFours Demo0001 0125</div></div><div class="media-card"><video autoplay="" controls="" loop="" muted="" playsinline="" preload="metadata" src="videos/Beawer Sports - Demos.mp4"></video><div class="media-description">Beawer Sports   Demos</div></div><div class="media-card"><video autoplay="" controls="" loop="" muted="" playsinline="" preload="metadata" src="videos/Beawer Sports - Demos_v2.mp4"></video><div class="media-description">Beawer Sports   Demos_v2</div></div><div class="media-card"><video autoplay="" controls="" loop="" muted="" playsinline="" preload="metadata" src="videos/Logo-V3-ReverseColor.mp4"></video><div class="media-description">Logo V3 ReverseColor</div></div><div class="media-card"><video autoplay="" controls="" loop="" muted="" playsinline="" preload="metadata" src="videos/Miraj-Demo.mp4"></video><div class="media-description">Miraj Demo</div></div><div class="media-card"><video autoplay="" controls="" loop="" muted="" playsinline="" preload="metadata" src="videos/Replay0001-0120.mp4"></video><div class="media-description">Replay0001 0120</div></div><div class="media-card"><video autoplay="" controls="" loop="" muted="" playsinline="" preload="metadata" src="videos/Replay-demo.mp4"></video><div class="media-description">Replay demo</div></div><div class="media-card"><video autoplay="" controls="" loop="" muted="" playsinline="" preload="metadata" src="videos/TopLeft-Logo0001-0150.mp4"></video><div class="media-description">TopLeft Logo0001 0150</div></div><div class="media-card"><video autoplay="" controls="" loop="" muted="" playsinline="" preload="metadata" src="videos/Wicket-Demo.mp4"></video><div class="media-description">Wicket Demo</div></div><div class="media-card"><video autoplay="" controls="" loop="" muted="" playsinline="" preload="metadata" src="videos/IPL_1.mp4"></video><div class="media-description">IPL_1</div></div><div class="media-card"><video autoplay="" controls="" loop="" muted="" playsinline="" preload="metadata" src="videos/Mumbai Cricket Association.mp4"></video><div class="media-description">Mumbai Cricket Association</div></div><div class="media-card"><video autoplay="" controls="" loop="" muted="" playsinline="" preload="metadata" src="videos/cards0001-0500-1.mp4"></video><div class="media-description">cards0001 0500 1</div></div><div class="media-card"><video autoplay="" controls="" loop="" muted="" playsinline="" preload="metadata" src="videos/Gold Ring.mp4"></video><div class="media-description">Gold Ring</div></div><div class="media-card"><video autoplay="" controls="" loop="" muted="" playsinline="" preload="metadata" src="videos/Phone Cover.mp4"></video><div class="media-description">Phone Cover</div></div><div class="media-card"><video autoplay="" controls="" loop="" muted="" playsinline="" preload="metadata" src="videos/Plane0001-0250-100.mp4"></video><div class="media-description">Plane0001 0250 100</div></div><div class="media-card"><video autoplay="" controls="" loop="" muted="" playsinline="" preload="metadata" src="videos/Kaizen.mp4"></video><div class="media-description">Kaizen</div></div><div class="media-card"><video autoplay="" controls="" loop="" muted="" playsinline="" preload="metadata" src="videos/Krunal.mp4"></video><div class="media-description">Krunal</div></div></div>
-</div>
-<!-- Overlay -->
-<div class="overlay" id="overlay">
-<span class="close" onclick="closeOverlay()">✖</span>
-<div id="overlayContent"></div>
-</div>
-<!-- Scripts -->
-<script>
-    // Tab Switching
-    function openTab(tabId, event) {
-      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-      event.target.classList.add('active');
-    }
+    <style>
+      /* Push tabs below larger header */
+      .tabs {
+        margin-top: 180px !important;
+        padding-top: 15px;
+        position: relative;
+        z-index: 5;
+      }
+      @media (max-width: 768px) {
+        .tabs {
+          margin-top: 220px !important;
+          padding-top: 20px;
+        }
+      }
+      .tab-button {
+        font-size: 16px;
+        padding: 12px 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <style>
+      /* Animated abstract curves */
+      .curves-bg {
+        position: fixed;
+        inset: 0;
+        overflow: hidden;
+        z-index: -2;
+        pointer-events: none;
+      }
+      .curve {
+        position: absolute;
+        width: 160vw;
+        height: 160px;
+        border-radius: 50%;
+        border: 3px solid rgba(255, 255, 255, 0.12);
+        filter: blur(1px);
+        animation:
+          moveCurve 18s ease-in-out infinite,
+          colorShift 12s linear infinite;
+      }
+      .c1 {
+        top: 10%;
+        left: -30%;
+        transform: rotate(-12deg);
+      }
+      .c2 {
+        top: 40%;
+        left: -20%;
+        animation-duration: 22s;
+      }
+      .c3 {
+        top: 70%;
+        left: -25%;
+        animation-duration: 26s;
+      }
+      @keyframes moveCurve {
+        0%,
+        100% {
+          transform: translateX(0) rotate(-12deg);
+        }
+        50% {
+          transform: translateX(120px) rotate(8deg);
+        }
+      }
+      @keyframes colorShift {
+        0% {
+          border-color: rgba(0, 212, 255, 0.25);
+        }
+        33% {
+          border-color: rgba(123, 97, 255, 0.25);
+        }
+        66% {
+          border-color: rgba(0, 255, 179, 0.25);
+        }
+        100% {
+          border-color: rgba(0, 212, 255, 0.25);
+        }
+      }
+      .header {
+        font-size: clamp(18px, 4vw, 30px) !important;
+        line-height: 1.5;
+        padding: 20px 12px !important;
+      }
+      .header div {
+        font-size: inherit !important;
+      }
+    </style>
+    <div class="curves-bg">
+      <div class="curve c1"></div>
+      <div class="curve c2"></div>
+      <div class="curve c3"></div>
+    </div>
 
-    // Overlay logic
-    const overlay = document.getElementById('overlay');
-    const overlayContent = document.getElementById('overlayContent');
+    <!-- Floating Header -->
+    <div class="header" id="header">
+      <div>3D Graphics and Design Studio</div>
+      <div>
+        <a
+          href="https://wa.me/917977561381?text=Hi%20,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20get%20in%20touch."
+          style="
+            color: #00d4ff;
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.3s;
+          "
+          onmouseover="this.style.color = '#00ff88'"
+          onmouseout="this.style.color = '#00d4ff'"
+          >+91-7977561381 (Whatsapp)</a
+        >
+      </div>
+      <div>Email: gourav.ecb@gmail.com</div>
+    </div>
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab-button" onclick="openTab('photos', event)">
+        Photos
+      </button>
+      <button class="tab-button active" onclick="openTab('videos', event)">
+        Videos
+      </button>
+    </div>
+    <!-- Photos Tab -->
+    <div class="tab-content" id="photos">
+      <div class="gallery">
+        <div class="media-card">
+          <img alt="AB9-Logo-v3-1" src="images/AB9-Logo-v3-1.png" />
+          <div class="media-description">AB9-Logo-v3-1</div>
+        </div>
+        <div class="media-card">
+          <img alt="AR-Logo" src="images/AR-Logo.png" />
+          <div class="media-description">AR-Logo</div>
+        </div>
+        <div class="media-card">
+          <img alt="Rajhans_Color_1" src="images/Rajhans_Color_1.png" />
+          <div class="media-description">Rajhans_Color_1</div>
+        </div>
+        <div class="media-card">
+          <img alt="Realize" src="images/Realize.png" />
+          <div class="media-description">Realize</div>
+        </div>
+        <div class="media-card">
+          <img alt="BedRoom" src="images/BedRoom.png" />
+          <div class="media-description">BedRoom</div>
+        </div>
+        <div class="media-card">
+          <img alt="Name-GS" src="images/Name-GS.png" />
+          <div class="media-description">Name-GS</div>
+        </div>
+        <div class="media-card">
+          <img alt="Plane_v1" src="images/Plane_v1.png" />
+          <div class="media-description">Plane_v1</div>
+        </div>
+        <div class="media-card">
+          <img alt="Plane_v2" src="images/Plane_v2.png" />
+          <div class="media-description">Plane_v2</div>
+        </div>
+        <div class="media-card">
+          <img alt="Plane_v3" src="images/Plane_v3.png" />
+          <div class="media-description">Plane_v3</div>
+        </div>
+        <div class="media-card">
+          <img alt="Abstract_v1" src="images/Abstract_v1.png" />
+          <div class="media-description">Abstract_v1</div>
+        </div>
+        <div class="media-card">
+          <img alt="Sofa" src="images/Sofa.png" />
+          <div class="media-description">Sofa</div>
+        </div>
+        <div class="media-card">
+          <img alt="Chair" src="images/Chair.png" />
+          <div class="media-description">Chair</div>
+        </div>
+        <div class="media-card">
+          <img alt="sword" src="images/sword.png" />
+          <div class="media-description">sword</div>
+        </div>
+      </div>
+    </div>
+    <!-- Videos Tab -->
+    <div class="tab-content active" id="videos">
+      <div class="gallery">
+        <div class="media-card">
+          <video
+            autoplay=""
+            controls=""
+            loop=""
+            muted=""
+            playsinline=""
+            preload="metadata"
+            src="videos/AB9-Replay-Demo.mp4"
+          ></video>
+          <div class="media-description">AB9 Replay Demo</div>
+        </div>
+        <div class="media-card">
+          <video
+            autoplay=""
+            controls=""
+            loop=""
+            muted=""
+            playsinline=""
+            preload="metadata"
+            src="videos/BaloonFours-Demo0001-0125.mp4"
+          ></video>
+          <div class="media-description">BaloonFours Demo0001 0125</div>
+        </div>
+        <div class="media-card">
+          <video
+            autoplay=""
+            controls=""
+            loop=""
+            muted=""
+            playsinline=""
+            preload="metadata"
+            src="videos/Beawer Sports - Demos.mp4"
+          ></video>
+          <div class="media-description">Beawer Sports Demos</div>
+        </div>
+        <div class="media-card">
+          <video
+            autoplay=""
+            controls=""
+            loop=""
+            muted=""
+            playsinline=""
+            preload="metadata"
+            src="videos/Beawer Sports - Demos_v2.mp4"
+          ></video>
+          <div class="media-description">Beawer Sports Demos_v2</div>
+        </div>
+        <div class="media-card">
+          <video
+            autoplay=""
+            controls=""
+            loop=""
+            muted=""
+            playsinline=""
+            preload="metadata"
+            src="videos/Logo-V3-ReverseColor.mp4"
+          ></video>
+          <div class="media-description">Logo V3 ReverseColor</div>
+        </div>
+        <div class="media-card">
+          <video
+            autoplay=""
+            controls=""
+            loop=""
+            muted=""
+            playsinline=""
+            preload="metadata"
+            src="videos/Miraj-Demo.mp4"
+          ></video>
+          <div class="media-description">Miraj Demo</div>
+        </div>
+        <div class="media-card">
+          <video
+            autoplay=""
+            controls=""
+            loop=""
+            muted=""
+            playsinline=""
+            preload="metadata"
+            src="videos/Replay0001-0120.mp4"
+          ></video>
+          <div class="media-description">Replay0001 0120</div>
+        </div>
+        <div class="media-card">
+          <video
+            autoplay=""
+            controls=""
+            loop=""
+            muted=""
+            playsinline=""
+            preload="metadata"
+            src="videos/Replay-demo.mp4"
+          ></video>
+          <div class="media-description">Replay demo</div>
+        </div>
+        <div class="media-card">
+          <video
+            autoplay=""
+            controls=""
+            loop=""
+            muted=""
+            playsinline=""
+            preload="metadata"
+            src="videos/TopLeft-Logo0001-0150.mp4"
+          ></video>
+          <div class="media-description">TopLeft Logo0001 0150</div>
+        </div>
+        <div class="media-card">
+          <video
+            autoplay=""
+            controls=""
+            loop=""
+            muted=""
+            playsinline=""
+            preload="metadata"
+            src="videos/Wicket-Demo.mp4"
+          ></video>
+          <div class="media-description">Wicket Demo</div>
+        </div>
+        <div class="media-card">
+          <video
+            autoplay=""
+            controls=""
+            loop=""
+            muted=""
+            playsinline=""
+            preload="metadata"
+            src="videos/IPL_1.mp4"
+          ></video>
+          <div class="media-description">IPL_1</div>
+        </div>
+        <div class="media-card">
+          <video
+            autoplay=""
+            controls=""
+            loop=""
+            muted=""
+            playsinline=""
+            preload="metadata"
+            src="videos/Mumbai Cricket Association.mp4"
+          ></video>
+          <div class="media-description">Mumbai Cricket Association</div>
+        </div>
+        <div class="media-card">
+          <video
+            autoplay=""
+            controls=""
+            loop=""
+            muted=""
+            playsinline=""
+            preload="metadata"
+            src="videos/cards0001-0500-1.mp4"
+          ></video>
+          <div class="media-description">cards0001 0500 1</div>
+        </div>
+        <div class="media-card">
+          <video
+            autoplay=""
+            controls=""
+            loop=""
+            muted=""
+            playsinline=""
+            preload="metadata"
+            src="videos/Gold Ring.mp4"
+          ></video>
+          <div class="media-description">Gold Ring</div>
+        </div>
+        <div class="media-card">
+          <video
+            autoplay=""
+            controls=""
+            loop=""
+            muted=""
+            playsinline=""
+            preload="metadata"
+            src="videos/Phone Cover.mp4"
+          ></video>
+          <div class="media-description">Phone Cover</div>
+        </div>
+        <div class="media-card">
+          <video
+            autoplay=""
+            controls=""
+            loop=""
+            muted=""
+            playsinline=""
+            preload="metadata"
+            src="videos/Plane0001-0250-100.mp4"
+          ></video>
+          <div class="media-description">Plane0001 0250 100</div>
+        </div>
+        <div class="media-card">
+          <video
+            autoplay=""
+            controls=""
+            loop=""
+            muted=""
+            playsinline=""
+            preload="metadata"
+            src="videos/Kaizen.mp4"
+          ></video>
+          <div class="media-description">Kaizen</div>
+        </div>
+        <div class="media-card">
+          <video
+            autoplay=""
+            controls=""
+            loop=""
+            muted=""
+            playsinline=""
+            preload="metadata"
+            src="videos/Krunal.mp4"
+          ></video>
+          <div class="media-description">Krunal</div>
+        </div>
+      </div>
+    </div>
+    <!-- Overlay -->
+    <div class="overlay" id="overlay">
+      <span class="close" onclick="closeOverlay()">✖</span>
+      <div id="overlayContent"></div>
+    </div>
+    <!-- Scripts -->
+    <script>
+      // Tab Switching
+      function openTab(tabId, event) {
+        document
+          .querySelectorAll(".tab-button")
+          .forEach((btn) => btn.classList.remove("active"));
+        document
+          .querySelectorAll(".tab-content")
+          .forEach((tab) => tab.classList.remove("active"));
+        document.getElementById(tabId).classList.add("active");
+        event.target.classList.add("active");
+      }
 
-    document.querySelectorAll('.gallery img, .gallery video').forEach(item => {
-      item.addEventListener('click', () => {
-        overlay.style.display = 'flex';
-        overlayContent.innerHTML = '';
-        if (item.tagName === 'IMG') {
-          const img = document.createElement('img');
-          img.src = item.src;
-          overlayContent.appendChild(img);
+      // Overlay logic
+      const overlay = document.getElementById("overlay");
+      const overlayContent = document.getElementById("overlayContent");
+
+      document
+        .querySelectorAll(".gallery img, .gallery video")
+        .forEach((item) => {
+          item.addEventListener("click", () => {
+            overlay.style.display = "flex";
+            overlayContent.innerHTML = "";
+            if (item.tagName === "IMG") {
+              const img = document.createElement("img");
+              img.src = item.src;
+              overlayContent.appendChild(img);
+            } else {
+              const vid = document.createElement("video");
+              vid.src = item.src;
+              vid.controls = true;
+              vid.autoplay = true;
+              overlayContent.appendChild(vid);
+            }
+          });
+        });
+
+      function closeOverlay() {
+        overlay.style.display = "none";
+        overlayContent.innerHTML = "";
+      }
+
+      // Auto-play videos when in view
+      document.addEventListener("DOMContentLoaded", function () {
+        const videos = document.querySelectorAll("video");
+
+        function checkVideos() {
+          videos.forEach((video) => {
+            const rect = video.getBoundingClientRect();
+            const halfScreen = window.innerHeight / 2;
+
+            if (rect.top < halfScreen && rect.bottom > halfScreen) {
+              if (video.paused) {
+                video.play();
+              }
+            } else {
+              if (!video.paused) {
+                video.pause();
+              }
+            }
+          });
+        }
+
+        window.addEventListener("scroll", checkVideos);
+        window.addEventListener("resize", checkVideos);
+        checkVideos();
+      });
+
+      // Shrink header on scroll
+      window.addEventListener("scroll", function () {
+        const header = document.getElementById("header");
+        if (window.scrollY > 50) {
+          header.classList.add("shrink");
         } else {
-          const vid = document.createElement('video');
-          vid.src = item.src;
-          vid.controls = true;
-          vid.autoplay = true;
-          overlayContent.appendChild(vid);
+          header.classList.remove("shrink");
         }
       });
-    });
-
-    function closeOverlay() {
-      overlay.style.display = 'none';
-      overlayContent.innerHTML = '';
-    }
-
-    // Auto-play videos when in view
-    document.addEventListener("DOMContentLoaded", function() {
-      const videos = document.querySelectorAll("video");
-
-      function checkVideos() {
-        videos.forEach(video => {
-          const rect = video.getBoundingClientRect();
-          const halfScreen = window.innerHeight / 2;
-
-          if (rect.top < halfScreen && rect.bottom > halfScreen) {
-            if (video.paused) {
-              video.play();
-            }
-          } else {
-            if (!video.paused) {
-              video.pause();
-            }
-          }
-        });
-      }
-
-      window.addEventListener("scroll", checkVideos);
-      window.addEventListener("resize", checkVideos);
-      checkVideos();
-    });
-
-    // Shrink header on scroll
-    window.addEventListener("scroll", function() {
-      const header = document.getElementById("header");
-      if (window.scrollY > 50) {
-        header.classList.add("shrink");
-      } else {
-        header.classList.remove("shrink");
-      }
-    });
-  </script>
-</body>
+    </script>
+  </body>
 </html>
